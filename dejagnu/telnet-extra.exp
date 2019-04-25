@@ -223,14 +223,14 @@ proc telnet_exec {boardname program args} {
     regsub -all "\\+" "$program $pargs" "." cmdpargs
     verbose "telnet_exec: command match string is \"$cmdpargs\""
     
-    expect {
-	-i $spawn_id -re "$cmdpargs" {
-	    verbose "telnet_exec: got command echoed back"
-	}
-	-i $spawn_id default {
-	    verbose "telnet_exec: command not echoed: command expect_out(buffer): \"$expect_out(buffer)\""
-	}
-    }
+    #    expect {
+    #	-i $spawn_id -re "$cmdpargs" {
+    #	    verbose "telnet_exec: got command echoed back"
+    #	}
+    #	-i $spawn_id default {
+    #	    verbose "telnet_exec: command not echoed: command expect_out(buffer): \"$expect_out(buffer)\""
+    #	}
+    #    }
 
     # Set the telnet command custom timeout to wait for the command to
     # complete executing.
