@@ -131,9 +131,9 @@ latex:
 	@echo "Run \`make' in that directory to run these through (pdf)latex" \
 	      "(use \`make latexpdf' here to do that automatically)."
 
-# Sphinx PDF requires newfloat.sty, which is not available on CentOS. Therefore
-# it is part of this distribution and is copied to the build directory in the
-# Makefile.
+# Sphinx PDF requires newfloat.sty and titlesec.sty, which are not available on
+# CentOS (or at least on some versions of CentOS). Therefore they are part of
+# this distribution and are copied to thebuild directory in the Makefile.
 # We also set LATEXOPTS to -interaction=batch, because doxygen output causes
 # some troubles in PDF generator and pdflatex start interactive prompt by
 # default in this case. We also add --ignore-errors to make options, because
@@ -144,7 +144,7 @@ latexpdf:
 	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(BUILDDIR)/latex
 	@echo "Running LaTeX files through pdflatex..."
 	mkdir -p $(BUILDDIR)/latex
-	cp -a ../newfloat.sty $(BUILDDIR)/latex
+	cp -a ../newfloat.sty ../titlesec.sty $(BUILDDIR)/latex
 	$(MAKE) -C $(BUILDDIR)/latex all-pdf LATEXOPTS=-interaction=batchmode \
 	    --ignore-errors
 	@echo "pdflatex finished; the PDF files are in $(BUILDDIR)/latex."
