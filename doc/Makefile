@@ -131,15 +131,16 @@ latex:
 	@echo "Run \`make' in that directory to run these through (pdf)latex" \
 	      "(use \`make latexpdf' here to do that automatically)."
 
-# Sphinx PDF requires newfloat.sty and titlesec.sty, which are not available on
-# CentOS (or at least on some versions of CentOS). Therefore they are part of
-# this distribution and are copied to thebuild directory in the Makefile.
+# Sphinx PDF requires packages some packages (see latex-pkgs directoy) which 
+# are not available on CentOS (or at least on some versions of CentOS).
+# Therefore they are part of this distribution and are copied to thebuild
+# directory in the Makefile.
 .PHONY: latexpdf
 latexpdf:
 	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(BUILDDIR)/latex
 	@echo "Running LaTeX files through pdflatex..."
 	mkdir -p $(BUILDDIR)/latex
-	cp -a newfloat.sty titlesec.sty $(BUILDDIR)/latex
+	cp -a latex-pkgs/* $(BUILDDIR)/latex
 	$(MAKE) -C $(BUILDDIR)/latex all-pdf
 	@echo "pdflatex finished; the PDF files are in $(BUILDDIR)/latex."
 
